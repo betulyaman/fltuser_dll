@@ -12,6 +12,8 @@ extern "C" {
     __declspec(dllexport) long filter_get_message(const HANDLE port_handle, const void* message_buffer, unsigned long message_buffer_size);
     __declspec(dllexport) long filter_reply_message(const HANDLE port_handle,  void* reply_buffer, unsigned long reply_buffer_size);
     __declspec(dllexport) long filter_disconnect(HANDLE port_handle);
+    
+    __declspec(dllexport) long filter_get_dos_name(const wchar_t* volume_name, void* dos_name, unsigned long dos_name_size);
 
 #ifdef __cplusplus
 }

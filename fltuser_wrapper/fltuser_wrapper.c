@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 long filter_connect_communication_port(HANDLE* port_handle, const wchar_t* port_name) {
-    if (port_handle == NULL || *port_handle == NULL || port_name == NULL) {
+    if (port_handle == NULL || port_name == NULL) {
         return ERROR_INVALID_PARAMETER;
     }
     long hresult = FilterConnectCommunicationPort(
@@ -58,4 +58,8 @@ long filter_disconnect(HANDLE port_handle) {
         CloseHandle(port_handle);
         port_handle = INVALID_HANDLE_VALUE;
     }
+}
+
+long filter_get_dos_name(const wchar_t* volume_name, void* dos_name, unsigned long dos_name_size) {
+    return FilterGetDosName(volume_name, dos_name, dos_name_size);
 }

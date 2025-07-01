@@ -3,7 +3,7 @@
 This is a wrapper for the functions needed for communication between User and Minifilter.  
 
 The following support routines are provided for communication initiated by a user operation:
-- `long filter_connect_communication_port(HANDLE*, const wchar_t*)` ([FilterConnectCommunicationPort](https://learn.microsoft.com/en-us/windows/win32/api/fltuser/nf-fltuser-filterconnectcommunicationport))
+- `long WINAPI filter_connect_communication_port(const wchar_t* port_name, PVOID context, ULONG context_size, HANDLE* port_handle)` ([FilterConnectCommunicationPort](https://learn.microsoft.com/en-us/windows/win32/api/fltuser/nf-fltuser-filterconnectcommunicationport))
 - `long filter_send_message(const HANDLE, void*, unsigned long)` ([FilterSendMessage](https://learn.microsoft.com/en-us/windows/win32/api/fltuser/nf-fltuser-filtersendmessage))
 - `long filter_disconnect(HANDLE port_handle)`
 

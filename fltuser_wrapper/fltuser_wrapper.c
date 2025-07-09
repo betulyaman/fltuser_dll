@@ -33,7 +33,7 @@ long WINAPI filter_connect_communication_port(const wchar_t* port_name, PVOID co
     return result;
 }
 
-long WINAPI filter_send_message(const HANDLE port_handle, void* input_buffer, unsigned long input_buffer_size) {
+long WINAPI filter_send_message(const HANDLE port_handle, void* input_buffer, unsigned long input_buffer_size, void* output_buffer, unsigned long output_buffer_size) {
     if (port_handle == NULL || input_buffer == NULL || input_buffer_size == 0) {
         DEBUG_PRINT(L"filter_send_message: Invalid parameter");
         return ERROR_INVALID_PARAMETER;
@@ -44,8 +44,8 @@ long WINAPI filter_send_message(const HANDLE port_handle, void* input_buffer, un
         port_handle,
         input_buffer,
         input_buffer_size,
-        NULL,
-        0,
+        output_buffer,
+        output_buffer_size,
         &bytes_returned
     );
 

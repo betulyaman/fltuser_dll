@@ -21,7 +21,7 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fltuser_wrapper.h">
+    <ClInclude Include="minifilter_communication_lib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,7 +32,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fltuser_wrapper.c">
+    <ClCompile Include="minifilter_communication_lib.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#include "fltuser_wrapper.h"
+#include "minifilter_communication_lib.h"
 
 #include <fltUser.h>
 #include <stdio.h>

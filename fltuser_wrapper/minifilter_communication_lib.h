@@ -1,5 +1,5 @@
-#ifndef FILTER_USER_WRAPPER_H
-#define FILTER_USER_WRAPPER_H
+#ifndef MINIFILTER_COMMUNICATION_LIB_H
+#define MINIFILTER_COMMUNICATION_LIB_H
 
 #include <Windows.h>
 
@@ -18,4 +18,4 @@ extern "C" {
 }
 #endif
 
-#endif // FILTER_USER_WRAPPER_H
+#endif // MINIFILTER_COMMUNICATION_LIB_H

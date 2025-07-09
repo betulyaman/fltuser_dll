@@ -1,4 +1,4 @@
-# fltuser_wrapper
+# minifilter_communication_lib
 
 This is a wrapper for the functions needed for communication between User and Minifilter.  
 

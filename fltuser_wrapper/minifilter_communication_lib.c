@@ -1,5 +1,4 @@
 #include "minifilter_communication_lib.h"
-
 #include <fltUser.h>
 #include <stdio.h>
 
@@ -14,7 +13,12 @@
 #define DEBUG_PRINT(fmt, ...)
 #endif
 
-long WINAPI filter_connect_communication_port(const wchar_t* port_name, PVOID context, ULONG context_size, HANDLE* port_handle) {
+long WINAPI filter_connect_communication_port(
+    const wchar_t* port_name,
+    PVOID context,
+    ULONG context_size,
+    HANDLE* port_handle
+) {
     if (port_name == NULL || port_handle == NULL) {
         DEBUG_PRINT(L"filter_connect_communication_port: Invalid parameter");
         return ERROR_INVALID_PARAMETER;
@@ -33,13 +37,18 @@ long WINAPI filter_connect_communication_port(const wchar_t* port_name, PVOID co
     return result;
 }
 
-long WINAPI filter_send_message(const HANDLE port_handle, void* input_buffer, unsigned long input_buffer_size, void* output_buffer, unsigned long output_buffer_size) {
+long WINAPI filter_send_message(
+    HANDLE port_handle,
+    void* input_buffer,
+    unsigned long input_buffer_size,
+    void* output_buffer,
+    unsigned long output_buffer_size
+) {
     if (port_handle == NULL) {
         DEBUG_PRINT(L"filter_send_message: Invalid parameter");
         return ERROR_INVALID_PARAMETER;
     }
 
-    // Handle NULL + 0 input buffer safely
     BYTE dummy_input = 0;
     if (input_buffer == NULL || input_buffer_size == 0) {
         input_buffer = &dummy_input;
@@ -60,7 +69,11 @@ long WINAPI filter_send_message(const HANDLE port_handle, void* input_buffer, un
     return result;
 }
 
-long WINAPI filter_get_message(const HANDLE port_handle, void* message_buffer, unsigned long message_buffer_size) {
+long WINAPI filter_get_message(
+    HANDLE port_handle,
+    void* message_buffer,
+    unsigned long message_buffer_size
+) {
     if (port_handle == NULL || message_buffer == NULL || message_buffer_size == 0) {
         DEBUG_PRINT(L"filter_get_message: Invalid parameter");
         return ERROR_INVALID_PARAMETER;
@@ -77,7 +90,11 @@ long WINAPI filter_get_message(const HANDLE port_handle, void* message_buffer, u
     return result;
 }
 
-long WINAPI filter_reply_message(const HANDLE port_handle, void* reply_buffer, unsigned long reply_buffer_size) {
+long WINAPI filter_reply_message(
+    HANDLE port_handle, 
+    void* reply_buffer, 
+    unsigned long reply_buffer_size
+) {
     if (port_handle == NULL || reply_buffer == NULL || reply_buffer_size == 0) {
         DEBUG_PRINT(L"filter_reply_message: Invalid parameter");
         return ERROR_INVALID_PARAMETER;
@@ -93,20 +110,11 @@ long WINAPI filter_reply_message(const HANDLE port_handle, void* reply_buffer, u
     return result;
 }
 
-long WINAPI filter_disconnect(HANDLE port_handle) {
-    if (port_handle == NULL) {
-        DEBUG_PRINT(L"filter_disconnect: Invalid parameter");
-        return ERROR_INVALID_PARAMETER;
-    }
-
-    BOOL success = CloseHandle(port_handle);
-    DWORD lastError = success ? ERROR_SUCCESS : GetLastError();
-
-    DEBUG_PRINT(L"filter_disconnect: success=%d, lastError=0x%08lx", success, lastError);
-    return lastError;
-}
-
-long WINAPI filter_get_dos_name(const wchar_t* volume_name, void* dos_name, unsigned long dos_name_size) {
+long WINAPI filter_get_dos_name(
+    const wchar_t* volume_name,
+    wchar_t* dos_name,
+    unsigned long dos_name_size
+) {
     if (volume_name == NULL || dos_name == NULL || dos_name_size == 0) {
         DEBUG_PRINT(L"filter_get_dos_name: Invalid parameter");
         return ERROR_INVALID_PARAMETER;
@@ -121,3 +129,5 @@ long WINAPI filter_get_dos_name(const wchar_t* volume_name, void* dos_name, unsi
     DEBUG_PRINT(L"filter_get_dos_name: volume_name=%s, result=0x%08lx", volume_name, result);
     return result;
 }
+
+// Note: No filter_disconnect implementation; SafeFileHandle in .NET manages handle cleanup safely.
